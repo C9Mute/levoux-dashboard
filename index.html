@@ -2306,8 +2306,19 @@ function renderNews() {
     return;
   }
 
-  const catColor = { SPX:'rgba(76,175,130,0.7)', NQ:'rgba(120,130,255,0.7)', macro:'rgba(201,168,76,0.6)', fed:'rgba(232,201,122,0.6)' };
-  const catLabel = { SPX:'S&P 500', NQ:'NASDAQ', macro:'מאקרו', fed:'Fed' };
+  const catColor = {
+  stock:   'rgba(76,175,130,0.7)',
+  crypto:  'rgba(120,130,255,0.7)',
+  forex:   'rgba(232,201,122,0.7)',
+  futures: 'rgba(201,168,76,0.7)'
+};
+
+const catLabel = {
+  stock:   'Stocks',
+  crypto:  'Crypto',
+  forex:   'Forex',
+  futures: 'Futures'
+};
 
  list.innerHTML = items.map(n => `
 <div class="news-item" onclick="window.open('${n.url}','_blank')">
