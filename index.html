@@ -2340,8 +2340,9 @@ const catLabel = {
         <div class="news-item-title">${n.headline}</div>
 
         <div class="news-item-meta">
-            ${new Date(n.datetime * 1000).toLocaleTimeString()}
-        </div>
+  ${catLabel[n.category]} •
+  ${new Date(n.datetime * 1000).toLocaleTimeString()}
+</div>
     </div>
 
 </div>
