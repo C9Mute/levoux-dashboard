@@ -26,12 +26,28 @@ if (!API_KEY) {
       let category = 'stock';
 
       if (
-        text.includes('bitcoin') ||
-        text.includes('ethereum') ||
-        text.includes('crypto')
-      ) {
-        category = 'crypto';
-      }
+  text.includes('bitcoin') ||
+  text.includes('btc') ||
+  text.includes('ethereum') ||
+  text.includes('eth') ||
+  text.includes('crypto') ||
+  text.includes('xrp') ||
+  text.includes('ripple') ||
+  text.includes('solana') ||
+  text.includes('sol') ||
+  text.includes('dogecoin') ||
+  text.includes('doge') ||
+  text.includes('cardano') ||
+  text.includes('ada') ||
+  text.includes('binance') ||
+  text.includes('bnb') ||
+  text.includes('coinbase') ||
+  text.includes('stablecoin') ||
+  text.includes('usdt') ||
+  text.includes('usdc')
+) {
+  category = 'crypto';
+}
       else if (
         text.includes('eur') ||
         text.includes('usd') ||
