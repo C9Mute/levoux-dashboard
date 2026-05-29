@@ -2306,18 +2306,27 @@ function renderNews() {
   const catColor = { SPX:'rgba(76,175,130,0.7)', NQ:'rgba(120,130,255,0.7)', macro:'rgba(201,168,76,0.6)', fed:'rgba(232,201,122,0.6)' };
   const catLabel = { SPX:'S&P 500', NQ:'NASDAQ', macro:'מאקרו', fed:'Fed' };
 
-  list.innerHTML = items.map(n => `
-    <div class="news-item" onclick="window.open('${n.url}','_blank')">
-      <div>
-        <div class="news-source-badge" style="border-color:${catColor[n.category]||'rgba(201,168,76,0.2)'};color:${catColor[n.category]||'rgba(201,168,76,0.6)'};">${n.source}</div>
-      </div>
-      <div class="news-item-body">
-        <div class="news-item-title">${n.title}</div>
-        <div class="news-item-meta">${catLabel[n.category]||''} · ${n.time}</div>
-      </div>
-      ${n.change ? `<div class="${n.change.startsWith('+') ? 'news-change-up' : 'news-change-dn'}">${n.change}</div>` : ''}
-    </div>`).join('');
-}
+ list.innerHTML = items.map(n => `
+<div class="news-item" onclick="window.open('${n.url}','_blank')">
+
+    <div>
+        <div class="news-source-badge"
+             style="border-color:${catColor[n.category]||'rgba(201,168,76,0.2)'};
+                    color:${catColor[n.category]||'rgba(201,168,76,0.6)'};">
+            ${n.source}
+        </div>
+    </div>
+
+    <div class="news-item-body">
+        <div class="news-item-title">${n.headline}</div>
+
+        <div class="news-item-meta">
+            ${new Date(n.datetime * 1000).toLocaleTimeString()}
+        </div>
+    </div>
+
+</div>
+`).join('');
 
 // Auto-load when dashboard section is shown
 const _origShowSec = showSection;
