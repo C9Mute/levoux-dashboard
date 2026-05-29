@@ -11,19 +11,41 @@ if (!API_KEY) {
   };
 }
 
-    const response = await fetch(
-      `https://finnhub.io/api/v1/news?category=general&token=${API_KEY}`
-    );
+    const generalResponse = await fetch(
+    `https://finnhub.io/api/v1/news?category=general&token=${API_KEY}`
+);
 
-    const data = await response.json();
+const cryptoResponse = await fetch(
+    `https://finnhub.io/api/v1/news?category=crypto&token=${API_KEY}`
+);
+
+const generalData = await generalResponse.json();
+const cryptoData = await cryptoResponse.json();
+
+const data = [
+    ...cryptoData.slice(0, 5),
+    ...generalData.slice(0, 10)
+];
 
     const categorized = data.map(item => {
-      const text = (
-        (item.headline || '') + ' ' +
-        (item.summary || '')
-      ).toLowerCase();
 
-      let category = 'stock';
+  const isCrypto = cryptoData.some(
+    cryptoItem => cryptoItem.id === item.id
+  );
+
+  if (isCrypto) {
+    return {
+      ...item,
+      category: 'crypto'
+    };
+  }
+
+  const text = (
+    (item.headline || '') + ' ' +
+    (item.summary || '')
+  ).toLowerCase();
+
+  let category = 'stock';
 
       if (
   text.includes('bitcoin') ||
