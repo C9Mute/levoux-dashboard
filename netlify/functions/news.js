@@ -8,12 +8,52 @@ exports.handler = async () => {
 
     const data = await response.json();
 
+    const categorized = data.map(item => {
+      const text = (
+        (item.headline || '') + ' ' +
+        (item.summary || '')
+      ).toLowerCase();
+
+      let category = 'stock';
+
+      if (
+        text.includes('bitcoin') ||
+        text.includes('ethereum') ||
+        text.includes('crypto')
+      ) {
+        category = 'crypto';
+      }
+      else if (
+        text.includes('eur') ||
+        text.includes('usd') ||
+        text.includes('jpy') ||
+        text.includes('forex') ||
+        text.includes('currency')
+      ) {
+        category = 'forex';
+      }
+      else if (
+        text.includes('oil') ||
+        text.includes('gold') ||
+        text.includes('silver') ||
+        text.includes('commodity') ||
+        text.includes('futures')
+      ) {
+        category = 'futures';
+      }
+
+      return {
+        ...item,
+        category
+      };
+    });
+
     return {
       statusCode: 200,
       headers: {
         "Access-Control-Allow-Origin": "*"
       },
-      body: JSON.stringify(data.slice(0, 10))
+      body: JSON.stringify(categorized.slice(0, 20))
     };
 
   } catch (error) {
