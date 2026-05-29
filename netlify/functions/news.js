@@ -30,7 +30,7 @@ console.log('CRYPTO IS ARRAY:', Array.isArray(cryptoData));
 const data = [
   ...cryptoData.slice(0, 5),
   ...generalData.slice(0, 10)
-];
+].sort((a, b) => b.datetime - a.datetime);
 
     const categorized = data.map(item => {
 
