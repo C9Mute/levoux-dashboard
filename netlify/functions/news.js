@@ -2,6 +2,15 @@ exports.handler = async () => {
   try {
     const API_KEY = process.env.FINNHUB_API_KEY;
 
+if (!API_KEY) {
+  return {
+    statusCode: 500,
+    body: JSON.stringify({
+      error: "FINNHUB_API_KEY missing"
+    })
+  };
+}
+
     const response = await fetch(
       `https://finnhub.io/api/v1/news?category=general&token=${API_KEY}`
     );
