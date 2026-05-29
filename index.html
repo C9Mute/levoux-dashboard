@@ -2260,14 +2260,19 @@ async function loadNews(force = false) {
 
     const data = await response.json();
 
-    _allNews = data;
+console.log('DATA FROM API:', data);
+console.log('DATA LENGTH:', data.length);
 
-    renderNews(_allNews);
+_allNews = Array.isArray(data) ? data : [];
 
-    document.getElementById('newsLastUpdate').textContent =
-        new Date().toLocaleTimeString();
+console.log('ALL NEWS AFTER ASSIGN:', _allNews);
 
-    _newsLoaded = true;
+renderNews();
+
+document.getElementById('newsLastUpdate').textContent =
+    new Date().toLocaleTimeString();
+
+_newsLoaded = true;
 
 } catch (err) {
 
