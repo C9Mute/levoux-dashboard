@@ -53,7 +53,7 @@ exports.handler = async () => {
       headers: {
         "Access-Control-Allow-Origin": "*"
       },
-      body: JSON.stringify(categorized.slice(0, 20))
+      body: JSON.stringify(categorized.slice(0, 8))
     };
 
   } catch (error) {
