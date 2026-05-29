@@ -2358,6 +2358,11 @@ const _wrappedShow = function(name) {
 };
 showSection = _wrappedShow;
 
+// Load news immediately
+setTimeout(() => {
+    loadNews();
+}, 500);
+
 </script>
 
 
