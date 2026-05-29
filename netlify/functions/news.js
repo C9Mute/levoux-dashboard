@@ -22,9 +22,14 @@ const cryptoResponse = await fetch(
 const generalData = await generalResponse.json();
 const cryptoData = await cryptoResponse.json();
 
+console.log('GENERAL DATA:', generalData);
+console.log('CRYPTO DATA:', cryptoData);
+console.log('GENERAL IS ARRAY:', Array.isArray(generalData));
+console.log('CRYPTO IS ARRAY:', Array.isArray(cryptoData));
+
 const data = [
-    ...cryptoData.slice(0, 5),
-    ...generalData.slice(0, 10)
+  ...cryptoData.slice(0, 5),
+  ...generalData.slice(0, 10)
 ];
 
     const categorized = data.map(item => {
